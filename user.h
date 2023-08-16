@@ -17,13 +17,13 @@ class User
 {
 	unsigned long generateID();
 protected:
-	unsigned long  id = -1;
-	std::string name;
-	std::list<unsigned long> friends;
-	std::list<Message*> receivedMsgs;
-	std::list<Post*> posts;
+	unsigned long  m_id = -1;
+	std::string m_name;
+	std::list<unsigned long> m_friends;
+	std::list<Message*> m_receivedMsgs;
+	std::list<Post*> m_posts;
 	User();
-	USocial* _us;
+	USocial* m_us;
 	~User();
 
 public:

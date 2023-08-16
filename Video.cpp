@@ -5,5 +5,5 @@
 
 void Video::display()
 {
-	std::cout << "Displaying video" << std::endl; 
+	std::cout << "Displaying video"; 
 }

@@ -10,7 +10,7 @@
 #include <random>
 
 
-User::User() : id(generateID()), name("")
+User::User() : m_id(generateID()), m_name("")
 {
 	
 }
@@ -39,30 +39,30 @@ unsigned long  User::generateID() {
 
 unsigned long User::getId()
 {
-	return id;
+	return m_id;
 }
 
 std::string User::getName()
 {
-	return name;
+	return m_name;
 }
 
 //adding a friend is mutual so friends add each other
 void User::addFriend(User* frnd)
 {
-	this->friends.push_back(frnd->getId());
-	frnd->friends.push_back(this->getId());	
+	m_friends.push_back(frnd->getId());
+	frnd->m_friends.push_back(this->getId());	
 }
 
 void User::removeFriend(User* frnd)
 {
-	friends.remove(frnd->getId());
+	m_friends.remove(frnd->getId());
 }
 
 void User::post(const std::string& postText)
 {
 	Post* post = new Post(postText);
-	this->posts.push_back(post);
+	m_posts.push_back(post);
 	std::cout << postText << std::endl;
 	//std::cout << this->posts.end() << std::endl;
 
@@ -72,26 +72,32 @@ void User::post(const std::string& postText, Media* postMedia)
 	Post* post = new Post(postText, postMedia);
 	std::cout << postText << std::endl;
 	postMedia->display();
-	this->posts.push_back(post);
+	this->m_posts.push_back(post);
 }
 
 std::list<Post*> User::getPosts()
 {
-	return this->posts;
+	return this->m_posts;
 
 }
 
 void User::viewFriendsPosts()
 {
 	
-	for (unsigned long friendPtr : this->friends)
+	for (unsigned long friendPtr : this->m_friends)
 	{
-		User* friendUser = _us->getUserById(friendPtr);
+		User* friendUser = m_us->getUserById(friendPtr);
 		std::cout << "Posts from " << friendUser->getName() << ":" << std::endl;
 		//std::cout <<"name: "<< friendUser->getName() << std::endl;
-		for (Post* postPtr : friendUser->posts)
+		for (Post* postPtr : friendUser->m_posts)
 		{
-			std::cout << "  Post: " << postPtr->getText() << postPtr->getMedia()<<std::endl;
+			if (postPtr->getMedia() == nullptr)
+				std::cout << "  Post: " << postPtr->getText() << std::endl;
+			else {
+				std::cout << "  Post: " << postPtr->getText() << " {";
+				postPtr->getMedia()->display();
+				std::cout << "}\n";
+			}
 		}
 	}
 
@@ -103,9 +109,17 @@ void User::receiveMsg(Message*)
 
 
 }
-void User::sendMessage(User*, Message)
+void User::sendMessage(User* user, Message msg)
 {
-
+	try 
+	{
+		if(m_us->getUserById(user->getId()))
+			user->receiveMsg(&msg);
+	}
+	catch (std::exception  e)
+	{
+		std::cout << "user is not your friend"<<std::endl;
+	}
 }
 
 void User::viewReceivedMessages()
