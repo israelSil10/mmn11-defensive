@@ -8,6 +8,8 @@
 #include "Audio.h"
 #include "Photo.h"
 
+class Usocial;
+class User;
 
 int main()
 {
@@ -17,12 +19,25 @@ int main()
 	User* u3 = us.registerUser("Shachaf");
 	User* u4 = us.registerUser("Tsur", true);
 	User* u5 = us.registerUser("Elit");
+	std::map<unsigned long, User*> x = us.getMap();
+	//std::cout << x.;
+	/*for (const auto& elem : x)
+	{
+		std::cout << elem.first << " " << elem.second << "\n";
+	}*/
+
 	
+	//std::cout << us.getMap().begin() << std::endl;
 	u1->post("Hello world!");
 	u2->post("I'm having a great time here :)", new Audio());
 	u3->post("This is awesome!", new Photo());
 	u5->addFriend(u1);
 	u5->addFriend(u2);
+	for (std::map<unsigned long, User*>::const_iterator it = x.begin();
+		it != x.end(); ++it)
+	{
+		std::cout << it->first <<" "<<x[it->first]->getName() << std::endl;
+	}
 	u5->viewFriendsPosts(); // should see only u1, u2 s' posts   
 	//u4->sendMessage(u5, new Message("Buy Falafel!"));  u5->viewReceivedMessages();
 	//try { u3->sendMessage(u5, new Message("All your base are belong to us")); }

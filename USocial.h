@@ -2,9 +2,8 @@
 #define USOCIAL_H
 #include <iostream>
 #include <map>
-#include "User.h"
 
-class User;
+class User; //forward declaration
 
 class USocial
 {
@@ -17,6 +16,7 @@ public:
 	User* registerUser(const std::string&);
 	void removeUser(User*); 
 	User* getUserById(unsigned long);
+	std::map<unsigned long, User*>  getMap();
 	
 };
 #endif

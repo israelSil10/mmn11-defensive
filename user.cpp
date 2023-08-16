@@ -9,15 +9,15 @@
 #include "USocial.h"
 #include <random>
 
-User::User()
-{
-	 id = generateID();
 
+User::User() : id(generateID()), name("")
+{
+	
 }
 
 User::~User()
 {
-	//delete();
+	//delete;
 }
 
 
@@ -47,15 +47,16 @@ std::string User::getName()
 	return name;
 }
 
-
+//adding a friend is mutual so friends add each other
 void User::addFriend(User* frnd)
 {
 	this->friends.push_back(frnd->getId());
+	frnd->friends.push_back(this->getId());	
 }
 
-void User::removeFriend(User*)
+void User::removeFriend(User* frnd)
 {
-
+	friends.remove(frnd->getId());
 }
 
 void User::post(const std::string& postText)
@@ -85,12 +86,12 @@ void User::viewFriendsPosts()
 	
 	for (unsigned long friendPtr : this->friends)
 	{
-		std::cout << "Friend: " << friendPtr << std::endl;
-		User* x = us->getUserById(friendPtr);
-		std::cout <<"name: "<< x->getName() << std::endl;
-		for (Post* postPtr : x->posts) 
+		User* friendUser = _us->getUserById(friendPtr);
+		std::cout << "Posts from " << friendUser->getName() << ":" << std::endl;
+		//std::cout <<"name: "<< friendUser->getName() << std::endl;
+		for (Post* postPtr : friendUser->posts)
 		{
-			std::cout << "  Post: " << postPtr << std::endl;
+			std::cout << "  Post: " << postPtr->getText() << postPtr->getMedia()<<std::endl;
 		}
 	}
 

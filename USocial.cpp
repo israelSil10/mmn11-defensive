@@ -12,8 +12,8 @@ User* USocial::registerUser(const std::string& name, bool isPrimum)
 {	
 	User* user = new User();
 	user->name = name;
-	user->id=user->generateID();
-	m_users.insert({ user->id ,user });
+	user->_us = this;
+	m_users.insert({ user->id ,user });//add user to Map
 	return user;
 }
 
@@ -30,7 +30,13 @@ void USocial::removeUser(User*)
 User* USocial::getUserById(unsigned long id)
 {
 	User* user;
-	user = m_users[id];
+	user = this->m_users[id];
 	return user;
+
+}
+
+std::map<unsigned long, User*>  USocial::getMap()
+{
+	return m_users;
 
 }

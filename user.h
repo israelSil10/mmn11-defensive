@@ -10,19 +10,20 @@
 #include "Media.h"
 #include "USocial.h"
 
-class Usocial;
+class Usocial; //forward declaration
+
 
 class User
 {
 	unsigned long generateID();
 protected:
-	USocial* us;
-	unsigned long id = -1;
+	unsigned long  id = -1;
 	std::string name;
 	std::list<unsigned long> friends;
 	std::list<Message*> receivedMsgs;
 	std::list<Post*> posts;
 	User();
+	USocial* _us;
 	~User();
 
 public:
