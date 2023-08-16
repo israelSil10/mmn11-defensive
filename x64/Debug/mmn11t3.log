@@ -1,0 +1,23 @@
+﻿  BuissniesUser.cpp
+  main.cpp
+  User.cpp
+  USocial.cpp
+C:\Users\israe\source\repos\mmn11\mmn11t3\mmn11t3\User.h(20,9): error C2143: syntax error: missing ';' before '*'
+C:\Users\israe\source\repos\mmn11\mmn11t3\mmn11t3\User.h(20,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\israe\source\repos\mmn11\mmn11t3\mmn11t3\User.h(20,13): error C2238: unexpected token(s) preceding ';'
+C:\Users\israe\source\repos\mmn11\mmn11t3\mmn11t3\USocial.cpp(13,25): error C2248: 'User::User': cannot access protected member declared in class 'User'
+C:\Users\israe\source\repos\mmn11\mmn11t3\mmn11t3\User.h(26,2): message : see declaration of 'User::User'
+C:\Users\israe\source\repos\mmn11\mmn11t3\mmn11t3\USocial.h(7,7): message : see declaration of 'User'
+C:\Users\israe\source\repos\mmn11\mmn11t3\mmn11t3\USocial.cpp(14,6): error C2248: 'User::name': cannot access protected member declared in class 'User'
+C:\Users\israe\source\repos\mmn11\mmn11t3\mmn11t3\User.h(22,14): message : see declaration of 'User::name'
+C:\Users\israe\source\repos\mmn11\mmn11t3\mmn11t3\USocial.h(7,7): message : see declaration of 'User'
+C:\Users\israe\source\repos\mmn11\mmn11t3\mmn11t3\USocial.cpp(15,6): error C2248: 'User::id': cannot access protected member declared in class 'User'
+C:\Users\israe\source\repos\mmn11\mmn11t3\mmn11t3\User.h(21,16): message : see declaration of 'User::id'
+C:\Users\israe\source\repos\mmn11\mmn11t3\mmn11t3\USocial.h(7,7): message : see declaration of 'User'
+C:\Users\israe\source\repos\mmn11\mmn11t3\mmn11t3\USocial.cpp(15,28): error C2248: 'User::generateID': cannot access private member declared in class 'User'
+C:\Users\israe\source\repos\mmn11\mmn11t3\mmn11t3\User.h(18,16): message : see declaration of 'User::generateID'
+C:\Users\israe\source\repos\mmn11\mmn11t3\mmn11t3\USocial.h(7,7): message : see declaration of 'User'
+C:\Users\israe\source\repos\mmn11\mmn11t3\mmn11t3\USocial.cpp(16,23): error C2248: 'User::id': cannot access protected member declared in class 'User'
+C:\Users\israe\source\repos\mmn11\mmn11t3\mmn11t3\User.h(21,16): message : see declaration of 'User::id'
+C:\Users\israe\source\repos\mmn11\mmn11t3\mmn11t3\USocial.h(7,7): message : see declaration of 'User'
+  Generating Code...
