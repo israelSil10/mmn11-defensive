@@ -1,8 +1,11 @@
+#ifndef BUISSNIESUSER_H
+#define BUISSNIESUSER_H
 #include <iostream>
 #include "User.h"
 
-class buissniesUser : public User
+class BuissniesUser : public User
 {
 public:
-	void sendMsg(User*, Message);
+	virtual void sendMessage(User*, Message*);
 };
+#endif

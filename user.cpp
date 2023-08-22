@@ -17,10 +17,18 @@ User::User() : m_id(generateID()), m_name("")
 
 User::~User()
 {
-	//delete;
+	std::cout << "Dddd" << std::endl;
+	for (Post* post : this->getPosts())
+	{
+		if (post->getMedia())
+			delete post->getMedia();
+	}
 }
 
-
+bool User::operator==(const User& other) const
+{
+	return User::m_id == other.m_id;
+}
 
 unsigned long  User::generateID() {
 	
@@ -70,8 +78,9 @@ void User::post(const std::string& postText)
 void User::post(const std::string& postText, Media* postMedia)
 {
 	Post* post = new Post(postText, postMedia);
-	std::cout << postText << std::endl;
+	std::cout << postText << " {";
 	postMedia->display();
+	std::cout << "}\n";
 	this->m_posts.push_back(post);
 }
 
@@ -92,9 +101,9 @@ void User::viewFriendsPosts()
 		for (Post* postPtr : friendUser->m_posts)
 		{
 			if (postPtr->getMedia() == nullptr)
-				std::cout << "  Post: " << postPtr->getText() << std::endl;
+				std::cout << "Post: " << postPtr->getText() << std::endl;
 			else {
-				std::cout << "  Post: " << postPtr->getText() << " {";
+				std::cout << "Post: " << postPtr->getText() << " {";
 				postPtr->getMedia()->display();
 				std::cout << "}\n";
 			}
@@ -104,25 +113,29 @@ void User::viewFriendsPosts()
 	
 }
 
-void User::receiveMsg(Message*)
+void User::receiveMsg(Message* msg)
+{
+	this->m_receivedMsgs.push_back(msg);
+}
+
+void User::sendMessage(User* user, Message* msg)
 {
 
+	bool found = (std::find(this->m_friends.begin(), this->m_friends.end(), user->getId()) != this->m_friends.end());
+	
+	if (!(std::find(this->m_friends.begin(), this->m_friends.end(), user->getId()) != this->m_friends.end()))
+		throw std::runtime_error("Users are not friends.");
+	else user->receiveMsg(msg);
+	//std::cout << "user is not your friend"<<std::endl;
+	
 
 }
-void User::sendMessage(User* user, Message msg)
-{
-	try 
-	{
-		if(m_us->getUserById(user->getId()))
-			user->receiveMsg(&msg);
-	}
-	catch (std::exception  e)
-	{
-		std::cout << "user is not your friend"<<std::endl;
-	}
-}
+
+
 
 void User::viewReceivedMessages()
 {
-
+	std::cout << this->getName() << " received messages:" << std::endl;
+	for (Message* msg : m_receivedMsgs)
+		std::cout << "\t"  <<  msg->getText() << std::endl;
 }

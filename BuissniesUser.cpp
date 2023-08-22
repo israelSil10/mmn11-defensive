@@ -1,10 +1,10 @@
 #include <iostream>
-#include "buissniesUser.h"
+#include "BuissniesUser.h"
 #include "user.h"
 #include "Message.h"
 
 
-void sendMsg(User*, Message)
+void BuissniesUser::sendMessage(User* user, Message* msg)
 {
-
+	user->receiveMsg(msg);
 }

@@ -6,8 +6,8 @@
 
 class Post
 {
- 	std::string text;
-	Media *media;
+ 	std::string m_text;
+	Media * m_media = NULL;
 
 public:
 	Post(const std::string&);

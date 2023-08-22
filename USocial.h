@@ -11,6 +11,7 @@ class USocial
 	bool m_isPrimum = false;
 	std::map<unsigned long,User*> m_users;
 public:
+	~USocial();
 	friend class User;
 	User* registerUser(const std::string&, bool);
 	User* registerUser(const std::string&);

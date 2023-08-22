@@ -3,26 +3,27 @@
 #include "Media.h"
 
 	Post::Post(const std::string& text) 
-		: text(text), media(nullptr)
+		: m_text(text), m_media(nullptr)
 	{
 	};
 
 	Post::Post(const std::string& text, Media* media)
-		: text(text), media(media)
+		: m_text(text), m_media(media)
 	{
 	};
 
 	std::string Post::getText()
 	{
-		return this->text;
+		return this->m_text;
 	};
 	Media* Post::getMedia()
 	{
-		return this->media;
+		return this->m_media;
 	};
 		
 	Post::~Post()
 	{
-
+		if (this->m_media != nullptr)
+			delete m_media;
 
 	}

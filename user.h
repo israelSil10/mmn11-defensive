@@ -21,11 +21,11 @@ protected:
 	std::string m_name;
 	std::list<unsigned long> m_friends;
 	std::list<Message*> m_receivedMsgs;
-	std::list<Post*> m_posts;
-	User();
 	USocial* m_us;
+	std::list<Post*> m_posts;
+	bool operator==(const User& ) const;
+	User();
 	~User();
-
 public:
 	friend class USocial;
 	unsigned long getId();
@@ -35,11 +35,9 @@ public:
 	void removeFriend(User*);
 	void post(const std::string&);
 	void post(const std::string&, Media*);
-	//std::list<class pointer> func();
-	//std::list<Post*> getPosts();
 	void viewFriendsPosts();
+	virtual void sendMessage(User*, Message*);
 	void receiveMsg(Message*);
-	virtual void sendMessage(User*, Message);
 	void viewReceivedMessages();
 
 };
